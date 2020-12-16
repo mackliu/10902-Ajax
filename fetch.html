@@ -7,6 +7,23 @@
     <title>Fetch</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        li{
+            padding:5px;
+            box-shadow: 0 0 5px #ccc;
+            margin:5px 0;
+            font-size:16px;
+            background-color: lightblue;
+
+        }
+        li:nth-child(odd){
+            color:pink;
+            background-color: green;
+        }
+
+
+    </style>
 </head>
 <body>
     <h1 class="header">Fetch</h1>
@@ -25,11 +42,28 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
-
-
     //建立回呼函式(call back function)來處理回應時的各項行為
-
-
     //建立錯誤處理
+
+    fetch("https://kktix.com/events.json",{method:'get'})
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(data){
+        
+            let events=data.entry
+            document.getElementsByTagName('h4')[0].innerHTML=data.title
+            console.log(events)
+            let html="";
+            for(let i=0;i<events.length;i++){
+                html=html+`<li><a href="${events[i].url}">${events[i].title}</a></li>`
+            }
+            let ul=document.getElementsByTagName('ul')[0]
+            ul.innerHTML=html;
+        
+        })
+        .catch(function(err){
+            //error
+        })
 
   </script>
