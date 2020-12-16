@@ -13,6 +13,7 @@ foreach($rows as $row){
   echo  "  <td>{$row['score']}</td>";
   echo  "  <td>";
   echo "<button type='button' data-id='{$row['id']}' onclick='del({$row['id']})'>刪除</button>";
+  echo "<button type='button' data-id='{$row['id']}' onclick='op({$row['id']})'>編輯</button>";
   echo "</td>";
   echo  "</tr> ";
 }
