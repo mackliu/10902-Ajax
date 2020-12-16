@@ -3,7 +3,14 @@
 include_once "../base.php";
 
 
-$Stu->save($_POST);
+$res=$Stu->save($_POST);
 
-to("../index.php");
+if($res){
+    echo "成功";
+
+}else{
+    echo "失敗";
+}
+
+//to("../index.php");
 ?>
