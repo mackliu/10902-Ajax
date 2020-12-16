@@ -32,21 +32,15 @@
   </form>
   
 <table>
-  <tr>
+  <tr id="header">
     <td>id</td>
     <td>name</td>
     <td>classes</td>
     <td>num</td>
     <td>score</td>
   </tr>
+<tbody id="list"></tbody>
 
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
 
 </table>
 
@@ -61,6 +55,7 @@
 * 5.是否需要更新畫面內容？更新畫面的方法？
 ************************************/
 
+query()
 
 //新增資料的函式
 function create(){
@@ -74,6 +69,7 @@ function create(){
       console.log(res)
       if(res=='成功'){
         alert("新增成功")
+        query()
       }else{
         alert("新增失敗")
       }
@@ -83,7 +79,9 @@ function create(){
 
 //查詢資料的函式
 function query(){
-
+  $.get("api/query.php",function(res){
+    $("#list").html(res)
+  })
 }
 
 //編輯資料的函式
