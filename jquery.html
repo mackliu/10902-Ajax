@@ -42,7 +42,7 @@
     * 4.建立錯誤處理
     ********************************************************/
      
-    //利用$.ajax()方法傳送請求並取得回應
+/*     //利用$.ajax()方法傳送請求並取得回應
     $.ajax(
       {
         url:'https://kktix.com/events.json',
@@ -58,13 +58,38 @@
             let ul=document.getElementsByTagName('ul')[0]
             ul.innerHTML=html;
         },
-        /* error:,
-        complete: */
+         error:,
+        complete:
       }
-    ) 
+    )  */
 
     
     //利用$.get()方法傳送請求並取得回應
 
+    $.get("https://kktix.com/events.json",function(res){
+      document.getElementsByTagName('h4')[0].innerHTML=res.title
+
+      let events=res.entry
+      let html="";
+      for(let i=0;i<events.length;i++){
+          html=html+`<li><a href="${events[i].url}">${events[i].title}</a></li>`
+      }
+      let ul=document.getElementsByTagName('ul')[0]
+      ul.innerHTML=html;
+    })
+
+
+
+
+/* $.ajax(
+    {
+        type: "GET",
+        url: "https://www.cpc.com.tw/GetOilPriceJson.aspx?type=TodayOilPriceString", 
+        success: function (data) {
+          console.log(data)
+            
+        }
+    });
+ */
 
   </script>

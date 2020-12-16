@@ -7,7 +7,24 @@
     <title>axios</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <!-----引入axios函式庫------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+    <style>
+
+        li{
+            padding:5px;
+            box-shadow: 0 0 5px #ccc;
+            margin:5px 0;
+            font-size:16px;
+            background-color: lightblue;
+  
+        }
+        li:nth-child(odd){
+            color:pink;
+            background-color: green;
+        }
+  
+  
+    </style>
 </head>
 <body>
     <h1 class="header">axios</h1>
@@ -26,11 +43,27 @@
 ********************************************************/
 
 //發起一個axios請求
-
-
 //建立回呼函式(call back function)來處理回應時的各項行為
-
-
 //建立錯誤處理
+
+axios.get("https://kktix.com/events.json")
+.then(function(response){
+    let res=response.data
+    console.log(res)
+    document.getElementsByTagName('h4')[0].innerHTML=res.title
+
+let events=res.entry
+let html="";
+for(let i=0;i<events.length;i++){
+    html=html+`<li><a href="${events[i].url}">${events[i].title}</a></li>`
+}
+let ul=document.getElementsByTagName('ul')[0]
+ul.innerHTML=html;
+
+})
+.catch(function(err){
+//error
+
+})
 
 </script>
