@@ -38,6 +38,7 @@
     <td>classes</td>
     <td>num</td>
     <td>score</td>
+    <td>操作</td>
   </tr>
 <tbody id="list"></tbody>
 
@@ -81,6 +82,7 @@ function create(){
 function query(){
   $.get("api/query.php",function(res){
     $("#list").html(res)
+
   })
 }
 
@@ -90,8 +92,14 @@ function update(){
 }
 
 //刪除資料的函式
-function del(){
+function del(id){
 
+  let con=confirm("你確定要刪除id "+id+" 的資料嗎?")
+  if(con){
+    $.post("api/delete.php",{id},function(){
+        query()
+    })
+  }
 }
 
 </script>
